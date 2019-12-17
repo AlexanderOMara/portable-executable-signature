@@ -1,7 +1,7 @@
 {
 	"name": "portable-executable-signature",
 	"description": "Package for reading and writing PE code signatures",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"keywords": [
 		"portable-executable",
 		"pe",
