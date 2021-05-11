@@ -84,6 +84,5 @@
 		"jasmine-spec-reporter": "^7.0.0",
 		"source-map-support": "^0.5.19",
 		"typescript": "^4.2.4"
-	},
-	"dependencies": {}
+	}
 }
