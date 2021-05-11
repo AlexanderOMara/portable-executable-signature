@@ -41,7 +41,6 @@
 		"test": "gulp test",
 		"all": "gulp all",
 		"watch": "gulp watch",
-		"watched": "gulp watched",
 		"prepack": "gulp prepack"
 	},
 	"repository": "https://github.com/AlexanderOMara/portable-executable-signature.git",
