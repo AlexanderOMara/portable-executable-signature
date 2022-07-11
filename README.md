@@ -1,6 +1,6 @@
-# portable-executable-signature
+# Portable Executable Signature
 
-Package for reading and writing PE code signatures
+Package for reading and writing PE code signatures (but not creating them)
 
 [![npm](https://img.shields.io/npm/v/portable-executable-signature.svg)](https://npmjs.com/package/portable-executable-signature)
 [![node](https://img.shields.io/node/v/portable-executable-signature.svg)](https://nodejs.org)
@@ -12,7 +12,7 @@ Package for reading and writing PE code signatures
 
 # Overview
 
-A broken code signature is worse than no signature, so it can be desirable to remove a signature.
+A broken code signature is often worse than no signature, so it can be desirable to remove a signature.
 
 This package can remove code signatures from PE binaries.
 
