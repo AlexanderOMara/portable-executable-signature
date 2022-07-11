@@ -133,26 +133,22 @@ gulp.task('lint', gulp.parallel([
 
 // build
 
-gulp.task('build:lib:dts', async () => {
+gulp.task('build:dts', async () => {
 	await exec('tsc');
 });
 
-gulp.task('build:lib:cjs', async () => {
+gulp.task('build:cjs', async () => {
 	await babelTarget(['src/**/*.ts'], 'lib', 'commonjs');
 });
 
-gulp.task('build:lib:mjs', async () => {
+gulp.task('build:esm', async () => {
 	await babelTarget(['src/**/*.ts'], 'lib', false);
 });
 
-gulp.task('build:lib', gulp.parallel([
-	'build:lib:dts',
-	'build:lib:cjs',
-	'build:lib:mjs'
-]));
-
 gulp.task('build', gulp.parallel([
-	'build:lib'
+	'build:dts',
+	'build:cjs',
+	'build:esm'
 ]));
 
 // test
@@ -169,6 +165,22 @@ gulp.task('test', gulp.series(['test:cjs', 'test:esm']));
 
 // watch
 
+gulp.task('watch:cjs', () => {
+	gulp.watch([
+		'src/**/*'
+	], gulp.series([
+		'all:cjs'
+	]));
+});
+
+gulp.task('watch:esm', () => {
+	gulp.watch([
+		'src/**/*'
+	], gulp.series([
+		'all:esm'
+	]));
+});
+
 gulp.task('watch', () => {
 	gulp.watch([
 		'src/**/*'
@@ -178,6 +190,20 @@ gulp.task('watch', () => {
 });
 
 // all
+
+gulp.task('all:cjs', gulp.series([
+	'clean',
+	'build:cjs',
+	'test:cjs',
+	'lint'
+]));
+
+gulp.task('all:esm', gulp.series([
+	'clean',
+	'build:esm',
+	'test:esm',
+	'lint'
+]));
 
 gulp.task('all', gulp.series([
 	'clean',
