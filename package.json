@@ -46,7 +46,7 @@
 	"repository": "https://github.com/AlexanderOMara/portable-executable-signature.git",
 	"bugs": "https://github.com/AlexanderOMara/portable-executable-signature/issues",
 	"author": "Alexander O'Mara",
-	"copyright": "Copyright (c) 2019-2021 Alexander O'Mara",
+	"copyright": "Copyright (c) 2019-2022 Alexander O'Mara",
 	"license": "MPL-2.0",
 	"devDependencies": {
 		"@babel/core": "^7.14.0",
