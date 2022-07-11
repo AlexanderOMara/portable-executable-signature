@@ -36,7 +36,6 @@ async function babelrc() {
 
 async function babelTarget(
 	src: string[],
-	srcOpts: any,
 	dest: string,
 	modules: string | boolean
 ) {
@@ -73,7 +72,7 @@ async function babelTarget(
 	].map(([f, r]) => gulpReplace(f, r));
 
 	await pipeline(
-		gulp.src(src, srcOpts),
+		gulp.src(src),
 		filterMeta,
 		...filterMetaReplaces,
 		filterMeta.restore,
@@ -139,11 +138,11 @@ gulp.task('build:lib:dts', async () => {
 });
 
 gulp.task('build:lib:cjs', async () => {
-	await babelTarget(['src/**/*.ts'], {}, 'lib', 'commonjs');
+	await babelTarget(['src/**/*.ts'], 'lib', 'commonjs');
 });
 
 gulp.task('build:lib:mjs', async () => {
-	await babelTarget(['src/**/*.ts'], {}, 'lib', false);
+	await babelTarget(['src/**/*.ts'], 'lib', false);
 });
 
 gulp.task('build:lib', gulp.parallel([
@@ -158,13 +157,15 @@ gulp.task('build', gulp.parallel([
 
 // test
 
-gulp.task('test:node', async () => {
+gulp.task('test:cjs', async () => {
 	await exec('jasmine');
 });
 
-gulp.task('test', gulp.parallel([
-	'test:node'
-]));
+gulp.task('test:esm', async () => {
+	await exec('jasmine', ['--config=spec/support/jasmine.esm.json']);
+});
+
+gulp.task('test', gulp.series(['test:cjs', 'test:esm']));
 
 // watch
 
