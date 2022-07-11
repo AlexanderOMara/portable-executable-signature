@@ -10,13 +10,11 @@ Package for reading and writing PE code signatures
 
 [![Build Status](https://github.com/AlexanderOMara/portable-executable-signature/workflows/main/badge.svg?branch=master)](https://github.com/AlexanderOMara/portable-executable-signature/actions?query=workflow%3Amain+branch%3Amaster)
 
-
 # Overview
 
 A broken code signature is worse than no signature, so it can be desirable to remove a signature.
 
 This package can remove code signatures from PE binaries.
-
 
 # Usage
 
@@ -24,10 +22,7 @@ Just pass an `ArrayBuffer` or an object that is a view of an `ArrayBuffer` to th
 
 ```js
 import fs from 'fs';
-import {
-	signatureGet,
-	signatureSet
-} from 'portable-executable-signature';
+import {signatureGet, signatureSet} from 'portable-executable-signature';
 
 const data = fs.readFileSync('pe-binary.exe');
 const signature = signatureGet(data);
@@ -37,11 +32,9 @@ console.log('unsigned:', unsigned);
 fs.writeFileSync('pe-binary-unsigned.exe', Buffer.from(unsigned));
 ```
 
-
 # Bugs
 
 If you find a bug or have compatibility issues, please open a ticket under issues section for this repository.
-
 
 # License
 

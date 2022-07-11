@@ -1,7 +1,4 @@
-import {
-	samples,
-	readSample
-} from './util.spec';
+import {samples, readSample} from './util.spec';
 import {
 	checksumGet,
 	checksumSet,
@@ -12,6 +9,7 @@ import {
 describe('checksum', () => {
 	describe('checksumGet', () => {
 		for (const sample of samples) {
+			// eslint-disable-next-line no-loop-func
 			it(sample.file, async () => {
 				const data = await readSample(sample.file);
 
@@ -22,6 +20,7 @@ describe('checksum', () => {
 
 	describe('checksumCreate', () => {
 		for (const sample of samples) {
+			// eslint-disable-next-line no-loop-func
 			it(sample.file, async () => {
 				const data = await readSample(sample.file);
 
@@ -32,6 +31,7 @@ describe('checksum', () => {
 
 	describe('checksumSet', () => {
 		for (const sample of samples) {
+			// eslint-disable-next-line no-loop-func
 			it(sample.file, async () => {
 				const data = await readSample(sample.file);
 
@@ -49,6 +49,7 @@ describe('checksum', () => {
 
 	describe('checksumUpdate', () => {
 		for (const sample of samples) {
+			// eslint-disable-next-line no-loop-func
 			it(sample.file, async () => {
 				const data = await readSample(sample.file);
 

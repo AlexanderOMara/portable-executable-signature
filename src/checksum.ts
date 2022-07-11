@@ -1,11 +1,5 @@
-import {
-	ArrayBuffers,
-	IArrayBufferView
-} from './types';
-import {
-	dataAsDataViewReadonly,
-	dataAsDataView
-} from './util';
+import {ArrayBuffers, IArrayBufferView} from './types';
+import {dataAsDataViewReadonly, dataAsDataView} from './util';
 
 /**
  * Get NT header offset.
@@ -43,9 +37,7 @@ function offsetChecksum(view: Readonly<DataView>) {
  * @param data PE data.
  * @returns Checksum value.
  */
-export function checksumGet(
-	data: Readonly<ArrayBuffers | IArrayBufferView>
-) {
+export function checksumGet(data: Readonly<ArrayBuffers | IArrayBufferView>) {
 	const view = dataAsDataViewReadonly(data);
 	return view.getUint32(offsetChecksum(view), true);
 }
@@ -78,6 +70,12 @@ export function checksumCreate(
 
 	let result = 0;
 	const limit = 0x100000000;
+
+	/**
+	 * Update checksum.
+	 *
+	 * @param dword Next DWORD.
+	 */
 	const update = (dword: number) => {
 		result += dword;
 		if (result >= limit) {

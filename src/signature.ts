@@ -1,13 +1,6 @@
-import {
-	ArrayBuffers,
-	IArrayBufferView
-} from './types';
-import {
-	dataAsDataViewReadonly
-} from './util';
-import {
-	checksumUpdate
-} from './checksum';
+import {ArrayBuffers, IArrayBufferView} from './types';
+import {dataAsDataViewReadonly} from './util';
+import {checksumUpdate} from './checksum';
 
 /**
  * Get data view slice, using same underlying buffer.
@@ -50,15 +43,14 @@ function dataViewConcat(
 	total: number | null = null
 ) {
 	// Calculate size if necessary.
-	const size = total === null ?
-		dvs.reduce((a, b) => a + b.byteLength, 0) :
-		total;
+	const size =
+		total === null ? dvs.reduce((a, b) => a + b.byteLength, 0) : total;
 
 	// Write all the data to one array buffer.
 	const concat = new ArrayBuffer(size);
 	let offset = 0;
 	for (const {buffer, byteOffset, byteLength} of dvs) {
-		(new Uint8Array(concat, offset, byteLength)).set(
+		new Uint8Array(concat, offset, byteLength).set(
 			new Uint8Array(buffer, byteOffset, byteLength),
 			0
 		);
@@ -98,11 +90,11 @@ function offsetSecurity(view: Readonly<DataView>) {
 	const magic = view.getUint16(optionalHeader, true);
 	let bits = 0;
 	switch (magic) {
-		case 0x10B: {
+		case 0x10b: {
 			bits = 32;
 			break;
 		}
-		case 0x20B: {
+		case 0x20b: {
 			bits = 64;
 			break;
 		}
@@ -118,7 +110,7 @@ function offsetSecurity(view: Readonly<DataView>) {
 	if (rvaCount < 5) {
 		throw new Error('No PE security field');
 	}
-	return (rvaCountOffset + 4) + (4 * 8);
+	return rvaCountOffset + 4 + 4 * 8;
 }
 
 /**
@@ -127,9 +119,7 @@ function offsetSecurity(view: Readonly<DataView>) {
  * @param data PE data.
  * @returns Signature data, or null.
  */
-export function signatureGet(
-	data: Readonly<ArrayBuffers | IArrayBufferView>
-) {
+export function signatureGet(data: Readonly<ArrayBuffers | IArrayBufferView>) {
 	const view = dataAsDataViewReadonly(data);
 	const security = offsetSecurity(view);
 
@@ -165,18 +155,19 @@ export function signatureSet(
 	const offset = view.getUint32(security, true);
 	const size = view.getUint32(security + 4, true);
 	if (offset) {
-		if ((offset + size) !== data.byteLength) {
+		if (offset + size !== data.byteLength) {
 			throw new Error('Expected signature to be at end of file');
 		}
 	}
 
 	const end = offset || view.byteLength;
 	const result = new DataView(
-		sig ?
-			dataViewConcat([
-				dataViewSlice(view, 0, end), sig
-			], end + sig.byteLength) :
-			dataViewCopy(view, 0, end)
+		sig
+			? dataViewConcat(
+					[dataViewSlice(view, 0, end), sig],
+					end + sig.byteLength
+			  )
+			: dataViewCopy(view, 0, end)
 	);
 
 	result.setUint32(security, sig ? end : 0, true);
