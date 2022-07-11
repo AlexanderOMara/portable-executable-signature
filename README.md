@@ -5,7 +5,6 @@ Package for reading and writing PE code signatures
 [![npm](https://img.shields.io/npm/v/portable-executable-signature.svg)](https://npmjs.com/package/portable-executable-signature)
 [![node](https://img.shields.io/node/v/portable-executable-signature.svg)](https://nodejs.org)
 
-[![dependencies](https://img.shields.io/david/AlexanderOMara/portable-executable-signature.svg)](https://david-dm.org/AlexanderOMara/portable-executable-signature)
 [![size](https://packagephobia.now.sh/badge?p=portable-executable-signature)](https://packagephobia.now.sh/result?p=portable-executable-signature)
 [![downloads](https://img.shields.io/npm/dm/portable-executable-signature.svg)](https://npmcharts.com/compare/portable-executable-signature?minimal=true)
 
