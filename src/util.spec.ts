@@ -1,7 +1,4 @@
-import {readFile} from 'fs';
-import {promisify} from 'util';
-
-const readFileP = promisify(readFile);
+import {readFile} from 'node:fs/promises';
 
 export const samples = [
 	{
@@ -97,5 +94,5 @@ export const samples = [
 ];
 
 export async function readSample(file: string) {
-	return readFileP(`spec/fixtures/pe/${file}`);
+	return readFile(`spec/fixtures/pe/${file}`);
 }

@@ -21,15 +21,15 @@ This package can remove code signatures from PE binaries.
 Just pass an `ArrayBuffer` or an object that is a view of an `ArrayBuffer` to the `signatureGet` and `signatureSet` functions.
 
 ```js
-import fs from 'fs';
+import {readFile, writeFile} from 'node:fs/promises';
 import {signatureGet, signatureSet} from 'portable-executable-signature';
 
-const data = fs.readFileSync('pe-binary.exe');
+const data = await readFile('pe-binary.exe');
 const signature = signatureGet(data);
 console.log('signature:', signature);
 const unsigned = signatureSet(data, null);
 console.log('unsigned:', unsigned);
-fs.writeFileSync('pe-binary-unsigned.exe', Buffer.from(unsigned));
+await writeFile('pe-binary-unsigned.exe', Buffer.from(unsigned));
 ```
 
 # Bugs
@@ -38,7 +38,7 @@ If you find a bug or have compatibility issues, please open a ticket under issue
 
 # License
 
-Copyright (c) 2019-2022 Alexander O'Mara
+Copyright (c) 2019-2023 Alexander O'Mara
 
 Licensed under the Mozilla Public License, v. 2.0.
 

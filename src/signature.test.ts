@@ -1,4 +1,6 @@
-import {createHash} from 'crypto';
+import {describe, it} from 'node:test';
+import {strictEqual} from 'node:assert';
+import {createHash} from 'node:crypto';
 
 import {samples, readSample} from './util.spec';
 import {signatureGet, signatureSet} from './signature';
@@ -7,11 +9,10 @@ function sha256(data: Buffer) {
 	return createHash('sha256').update(data).digest('hex');
 }
 
-describe('signature', () => {
-	describe('signatureGet', () => {
+void describe('signature', () => {
+	void describe('signatureGet', () => {
 		for (const sample of samples) {
-			// eslint-disable-next-line no-loop-func
-			it(sample.file, async () => {
+			void it(sample.file, async () => {
 				const data = await readSample(sample.file);
 				const read = signatureGet(data);
 
@@ -19,32 +20,34 @@ describe('signature', () => {
 					if (!read) {
 						throw new Error('Internal error');
 					}
-					expect(sha256(Buffer.from(read))).toBe(
+					strictEqual(
+						sha256(Buffer.from(read)),
 						sample.signatureSha256
 					);
 				} else {
-					expect(read).toBeNull();
+					strictEqual(read, null);
 				}
 			});
 		}
 	});
 
-	describe('signatureSet', () => {
+	void describe('signatureSet', () => {
 		for (const sample of samples) {
-			// eslint-disable-next-line no-loop-func
-			it(sample.file, async () => {
+			void it(sample.file, async () => {
 				const data = await readSample(sample.file);
 
 				const wroteDummy = signatureSet(
 					data,
 					Buffer.from('dummy signature')
 				);
-				expect(sha256(Buffer.from(wroteDummy))).toBe(
+				strictEqual(
+					sha256(Buffer.from(wroteDummy)),
 					sample.signedDummySha256
 				);
 
 				const wroteNone = signatureSet(data, null);
-				expect(sha256(Buffer.from(wroteNone))).toBe(
+				strictEqual(
+					sha256(Buffer.from(wroteNone)),
 					sample.signedNoneSha256
 				);
 			});
