@@ -8,7 +8,7 @@ Package for reading and writing PE code signatures (but not creating them)
 [![size](https://packagephobia.now.sh/badge?p=portable-executable-signature)](https://packagephobia.now.sh/result?p=portable-executable-signature)
 [![downloads](https://img.shields.io/npm/dm/portable-executable-signature.svg)](https://npmcharts.com/compare/portable-executable-signature?minimal=true)
 
-[![Build Status](https://github.com/AlexanderOMara/portable-executable-signature/workflows/main/badge.svg?branch=master)](https://github.com/AlexanderOMara/portable-executable-signature/actions?query=workflow%3Amain+branch%3Amaster)
+[![Build Status](https://github.com/AlexanderOMara/portable-executable-signature/workflows/main/badge.svg)](https://github.com/AlexanderOMara/portable-executable-signature/actions?query=workflow%3Amain+branch%3Amaster)
 
 # Overview
 
