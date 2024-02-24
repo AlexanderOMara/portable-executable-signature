@@ -166,7 +166,7 @@ export function signatureSet(
 			? dataViewConcat(
 					[dataViewSlice(view, 0, end), sig],
 					end + sig.byteLength
-			  )
+				)
 			: dataViewCopy(view, 0, end)
 	);
 
