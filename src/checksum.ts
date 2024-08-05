@@ -79,7 +79,7 @@ export function checksumCreate(
 	const update = (dword: number) => {
 		result += dword;
 		if (result >= limit) {
-			// eslint-disable-next-line no-bitwise
+			// eslint-disable-next-line no-bitwise, unicorn/prefer-math-trunc
 			result = (result % limit) + ((result / limit) | 0);
 		}
 	};

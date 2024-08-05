@@ -154,10 +154,8 @@ export function signatureSet(
 
 	const offset = view.getUint32(security, true);
 	const size = view.getUint32(security + 4, true);
-	if (offset) {
-		if (offset + size !== data.byteLength) {
-			throw new Error('Expected signature to be at end of file');
-		}
+	if (offset && offset + size !== data.byteLength) {
+		throw new Error('Expected signature to be at end of file');
 	}
 
 	const end = offset || view.byteLength;
