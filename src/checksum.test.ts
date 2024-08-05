@@ -1,13 +1,13 @@
 import {describe, it} from 'node:test';
 import {strictEqual} from 'node:assert';
 
-import {samples, readSample} from './util.spec';
+import {samples, readSample} from './util.spec.ts';
 import {
 	checksumGet,
 	checksumSet,
 	checksumCreate,
 	checksumUpdate
-} from './checksum';
+} from './checksum.ts';
 
 void describe('checksum', () => {
 	void describe('checksumGet', () => {

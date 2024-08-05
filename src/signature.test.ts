@@ -2,8 +2,8 @@ import {describe, it} from 'node:test';
 import {strictEqual} from 'node:assert';
 import {createHash} from 'node:crypto';
 
-import {samples, readSample} from './util.spec';
-import {signatureGet, signatureSet} from './signature';
+import {samples, readSample} from './util.spec.ts';
+import {signatureGet, signatureSet} from './signature.ts';
 
 function sha256(data: Buffer) {
 	return createHash('sha256').update(data).digest('hex');

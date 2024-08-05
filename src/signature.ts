@@ -1,6 +1,6 @@
-import {ArrayBuffers, IArrayBufferView} from './types';
-import {dataAsDataViewReadonly} from './util';
-import {checksumUpdate} from './checksum';
+import {ArrayBuffers, IArrayBufferView} from './types.ts';
+import {dataAsDataViewReadonly} from './util.ts';
+import {checksumUpdate} from './checksum.ts';
 
 /**
  * Get data view slice, using same underlying buffer.

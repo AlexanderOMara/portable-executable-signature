@@ -1,4 +1,4 @@
-import {ArrayBuffers, IArrayBufferView} from './types';
+import {ArrayBuffers, IArrayBufferView} from './types.ts';
 
 /**
  * Convert buffer-like object to DataView.

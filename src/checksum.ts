@@ -1,5 +1,5 @@
-import {ArrayBuffers, IArrayBufferView} from './types';
-import {dataAsDataViewReadonly, dataAsDataView} from './util';
+import {ArrayBuffers, IArrayBufferView} from './types.ts';
+import {dataAsDataViewReadonly, dataAsDataView} from './util.ts';
 
 /**
  * Get NT header offset.
